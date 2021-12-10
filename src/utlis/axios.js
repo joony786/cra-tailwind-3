@@ -4,11 +4,11 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const baseURL = "http://api.icndb.com/jokes/random"
+const baseURL = "http://api.icndb.com/"
 
 
 /**
- *
+ * @param {string[] || string} messages error messages
  * parse error response
  */
 function parseError(messages) {
@@ -26,11 +26,12 @@ function parseError(messages) {
 
 /**
  * parse response
+ * @param {Object} response
  */
 function parseBody(response) {
 //  if (response.status === 200 && response.data.status.code === 200) { // - if use custom status code
     if (response.status === 200) {
-        return response.data.result
+        return response
     } else {
         return this.parseError(response.data.messages)
     }
